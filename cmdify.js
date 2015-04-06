@@ -184,7 +184,8 @@ exports.convert = function(code, tp) {
             //AMD和CMD有区别，非绝对路径都是相对当前路径，即"a"->"./a"
             var s = defDeps.array.source[i];
             if(/^['"][^./]/.test(s)) {
-              s = s.charAt(0) + './' + s.slice(1)
+              // s = s.charAt(0) + './' + s.slice(1)
+              // s = s.charAt(0) + s.slice(1);
             }
             req += 'var ' + d + ' = require(' + s + ');';
           }
@@ -192,7 +193,8 @@ exports.convert = function(code, tp) {
         if(defDeps.array && defDeps.params.source.length < defDeps.array.source.length){
             defDeps.array.source.slice(defDeps.params.source.length).forEach(function(s){
                 if(/^['"][^./]/.test(s)) {
-                    s = s.charAt(0) + './' + s.slice(1)
+                    // s = s.charAt(0) + './' + s.slice(1)
+                    // s = s.charAt(0) + s.slice(1)
                 }
                 req += 'require(' + s + ');';
             });
